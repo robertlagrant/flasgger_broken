@@ -5,7 +5,7 @@ from .blueprint import b
 
 
 swagger_config = {
-    'title': 'Flasgger broken?',
+    'title': 'Flasgger validation?',
     'uiversion': 2,
     'basePath':''
 }
