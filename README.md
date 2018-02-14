@@ -4,6 +4,8 @@ _(Built with Python 3.6, on MacOS.)_
 
 This is attempting to show that the `validation=True` option on the `swag_from` decorator isn't doing anything, and the `validate()` call (which IS doing something) doesn't like following Swagger's allOf option.
 
+The Swagger definition is an entity called Bar, which pulls in fields from FooMixin. I can't get `validation=True` to fail validation at all, and calling `validate()` fails if Bar's fields are all correct, as it can't find FooMixin. 
+
 ## Steps to reproduce environment
 
 1. Pull this repo :-) and go to repo directory in terminal
