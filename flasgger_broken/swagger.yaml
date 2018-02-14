@@ -1,0 +1,88 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: Test Flasgger
+  description: |
+    Test Flasgger
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+
+
+paths:
+
+  # BAR
+
+  /bar:
+    post:
+      description: "Add a new bar"
+      summary: "Add a new bar"
+      tags:
+        - bar
+      operationId: "createBar"
+      produces:
+      - application/json
+      parameters:
+      - name: bar
+        in: body
+        required: true
+        description: 'JSON object containing a Bar'
+        schema:
+          $ref: '#/definitions/Bar'
+      responses:
+        200:
+          description: 'Creates a new Bar'
+          schema:
+            $ref: '#/definitions/Bar'
+
+definitions:
+
+  # FOOMIXIN
+
+  FooMixin:
+    title: FooMixin
+    type: object
+    properties:
+      foo1:
+        type: "string"
+        example: "FOO"
+        description: "This is the first foo"
+      foo2:
+        type: "string"
+        example: "OOF"
+        description: "This is the second foo"
+      foo3:
+        type: "string"
+        example: "FOOFOO"
+        description: "This is the rarely-needed third foo"
+    required:
+      - foo1
+
+  # BAR
+
+  Bar:
+    title: Bar
+    type: object
+    example:
+      bar_uuid: 1ab091c8-7567-4420-ab01-5427c991ef2f
+      bar_email: me@email.com
+      foo1: "A good foo"
+      foo2: "Another good foo"
+    properties:
+      bar_uuid:
+        type: string
+        example: 1ab091c8-7567-4420-ab01-5427c991ef2f
+        description: the bar uuid
+      bar_email:
+        type: string
+        example: me@email.com
+        description: The bar email
+    required:
+      - bar_uuid
+      - bar_email
+      - foo2
+    allOf:
+      - $ref: '#/definitions/FooMixin'
